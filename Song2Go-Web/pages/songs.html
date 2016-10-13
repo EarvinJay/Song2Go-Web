@@ -117,20 +117,19 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+                          <div class = "dataTable_wrapper">
+                            <table width="100%" class="table" id="dataTables">
                                 <thead>
                                     <tr>
                                         <th>Song Title</th>
                                         <th>Song Location</th>
+                                        <th>Actions</th>
                                         <!-- <th>Genre</th>
                                         <th>Year</th>
                                         <th>Date Purchased</th> -->
                                     </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
                             </table>       
+                          </div>
             </div>
             <!-- /.row -->
             
@@ -165,6 +164,9 @@
         });
     });
     </script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
+    <script src="js/RetrieveSongs.js"></script>
+              
 
 </body>
 

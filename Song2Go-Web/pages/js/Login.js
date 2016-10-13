@@ -16,16 +16,21 @@
 
 mbtnSignIn.addEventListener('click', e=>{
 
-  var mEmail = document.getElementById('txtEmail').value;
+    var mEmail = document.getElementById('txtEmail').value;
     var mPass = document.getElementById('txtPass').value;
   
+    if(!mEmail || !mPass)
+    {
+      return alert('email and password required');
+    }
+    else
+    {
+       firebase.auth().signInWithEmailAndPassword(mEmail, mPass).catch(function(error) {
+      
+          var errorCode = error.code;
+          var errorMessage = error.message;
 
-   firebase.auth().signInWithEmailAndPassword(mEmail, mPass).catch(function(error) {
-  
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
-    });
+        });
 
   firebase.auth().onAuthStateChanged(firebaseUser =>{
       if(firebaseUser)
@@ -37,6 +42,7 @@ mbtnSignIn.addEventListener('click', e=>{
         console.log('not logged in');
       }
   });
+}
 });
 
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {

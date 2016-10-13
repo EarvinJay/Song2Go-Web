@@ -11,36 +11,50 @@
     const mbtnSignUp = document.getElementById('btnSignUp');
     
     var databaseRef = firebase.database().ref();
-
+    var mForm = document.getElementById('account_form');
   
 
 mbtnSignUp.addEventListener('click', e=>{
 
-  var mEmail = document.getElementById('txtEmail').value;
+    var mEmail = document.getElementById('txtEmail').value;
     var mPass = document.getElementById('txtPass').value;
-  const mAuth = firebase.auth();
+    var mKtvName = document.getElementById('txtKtvName').value;
+    
+    if(!mEmail || !mPass)
+    {
+      return alert('email and password required');
+    }
 
-     // const promise = firebase.auth().CreateUserWithEmailAndPassword(email, pass);
-     // promise.catch(e => console.log(e.message));
-
-     
-     var test = firebase.auth().createUserWithEmailAndPassword(mEmail, mPass).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log("errorCode " + errorCode + '\nErrorMessage ' + errorMessage);
+    else
+    {
+      firebase.auth().createUserWithEmailAndPassword(mEmail, mPass).catch(function(error) {
+       
+        console.log('register error', error);
+        if(error.code === 'auth/email-already-in-use')
+        {
+          alert('Email Address is already in use');
+          mForm.reset();
+        }
       });
 
-     console.log(test);
-
+    }
      var mAccount = 
         { 
           email: mEmail, 
-          pass: mPass 
+          pass: mPass,
+          ktv: mKtvName 
         };
 
-        var database = databaseRef.child('KTVOwner');
-            database.push().set(mAccount);
+        var databaseAccount = databaseRef.child('KTV-Owner');
+            databaseAccount.push().set(mAccount);
+
+        var mKTV =
+        {
+          KTV: mKtvName
+        };
+
+        var databaseKtv = databaseRef.child('KTV-Bar');
+            databaseKtv.push().set(mKTV);
  
 });
 

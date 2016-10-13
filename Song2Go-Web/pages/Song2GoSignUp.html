@@ -23,7 +23,7 @@
         <div id="signup">   
           <h1>Sign Up for KTV Owner</h1>
           
-          <form action="/" method="post">
+          <form action="/" method="post" id="account_form">
 
           <div class="field-wrap">
             <label>
@@ -39,10 +39,17 @@
             <input id="txtPass" type="password"required autocomplete="off" />
           </div>
 
+          <div class="field-wrap">
+            <label>
+              Ktv Name<span class="req">*</span>
+            </label>
+            <input id="txtKtvName" type="email"required autocomplete="off"/>
+          </div>
+
           <p class="forgot"><a onclick = "location.href='Song2GoSignIn.html'">Login</a></p>
 
           </div>
-          <input type =button onclick="location.href='Song2GoSingIn.html'" id="btnSignUp" type="submit" class="button button-block" value = 'Sign Up'>
+          <input type =button id="btnSignUp" type="submit" class="button button-block" value = 'Sign Up'>
           
           </form>
 
